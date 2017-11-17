@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wl.blog.dao.ClickDao">
+
+    <insert id="addClick" parameterType="com.wl.blog.entity.Click">
+        <selectKey resultType="java.lang.Integer" order="AFTER"
+                   keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        INSERT INTO tb_click (blogId,clickNum,statusId)VALUES (
+        #{blogId},
+        #{clickNum},
+        #{statusId}
+        )
+    </insert>
+    
+    <update id="updateClick" >
+        UPDATE tb_click
+        <set>
+            clickNum=#{clickNum}
+        </set>
+        WHERE blogId=#{blogId}
+    </update>
+</mapper>

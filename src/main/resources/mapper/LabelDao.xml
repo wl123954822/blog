@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wl.blog.dao.LabelDao">
+
+    <insert id="insertLaber" parameterType="com.wl.blog.entity.Label">
+        <selectKey resultType="java.lang.Integer" order="AFTER"
+                   keyProperty="labelId">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        INSERT INTO tb_label (labelName,labelStatus)VALUES (
+        #{labelName},
+        #{labelStatus}
+        )
+    </insert>
+
+    <select id="labetByName" resultType="com.wl.blog.entity.Label">
+        SELECT * FROM tb_label WHERE labelName=#{labelName}
+    </select>
+
+    <select id="labelList" resultType="com.wl.blog.entity.Label">
+        SELECT * FROM tb_label
+    </select>
+</mapper>

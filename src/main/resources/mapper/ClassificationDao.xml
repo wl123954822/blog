@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wl.blog.dao.ClassificationDao">
+
+   <insert id="insertInto" parameterType="com.wl.blog.entity.Classification">
+       <selectKey resultType="java.lang.Integer" order="AFTER"
+                  keyProperty="classificationId">
+           SELECT LAST_INSERT_ID() as id
+       </selectKey>
+       INSERT INTO tb_classification (classificationName,classificationIdStatus)VALUES (
+            #{classificationName},
+            #{classificationIdStatus}
+    )
+   </insert>
+
+    <select id="classifList" resultType="com.wl.blog.entity.Classification">
+        SELECT * FROM tb_classification
+    </select>
+
+    <select id="byclassifName" resultType="com.wl.blog.entity.Classification">
+        SELECT * FROM tb_classification WHERE classificationName=#{classificationName}
+    </select>
+
+    <delete id="deleteClassif" parameterType="java.lang.Integer">
+      DELETE FROM tb_classification
+        WHERE classificationId=#{classificationId}
+    </delete>
+
+    <update id="updateClassifStatus" >
+        UPDATE tb_classification
+        <set>
+            classificationIdStatus=#{classificationIdStatus}
+        </set>
+        WHERE classificationId=#{classificationId}
+    </update>
+
+    <select id="classifListByStatus" resultType="com.wl.blog.entity.Classification">
+        SELECT * FROM tb_classification WHERE classificationIdStatus=#{classificationIdStatus}
+    </select>
+</mapper>
