@@ -1,5 +1,6 @@
 package com.wl.blog.controller;
 
+import com.wl.blog.Dto.ClassificationDto;
 import com.wl.blog.entity.Classification;
 import com.wl.blog.service.ClassificationService;
 import com.wl.blog.util.RegExpUtil;
@@ -104,6 +105,16 @@ public class ClassificationController {
         List<Classification>  list= classificationService.classifListByStatus(classificationIdStatus);
 
         map.put("list",list);
+        return map;
+    }
+
+    @RequestMapping("/classNameAndId")
+    public Map<String,Object> classNanI(){
+        Map<String,Object> map=new HashMap<String, Object>();
+
+        List<ClassificationDto> list=classificationService.getNameId();
+
+        map.put("nllist",list);
         return map;
     }
 }

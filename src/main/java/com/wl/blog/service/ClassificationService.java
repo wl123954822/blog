@@ -1,5 +1,6 @@
 package com.wl.blog.service;
 
+import com.wl.blog.Dto.ClassificationDto;
 import com.wl.blog.entity.Classification;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface ClassificationService {
     boolean updateClassifStatu(int classificationId,int classificationIdStatus);
 
     List<Classification> classifListByStatus(int classificationIdStatus);
+
+    List<ClassificationDto> getNameId();
 }

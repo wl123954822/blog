@@ -1,6 +1,7 @@
 package com.wl.blog.service.impl;
 
 import com.wl.blog.Dto.BlogDto;
+import com.wl.blog.Dto.BlogTimeDto;
 import com.wl.blog.dao.BlogDao;
 import com.wl.blog.dao.BlogListDao;
 import com.wl.blog.entity.Blog;
@@ -37,5 +38,25 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogDto> blogLisByCr() {
         return blogListDao.blogLiByCreate();
+    }
+
+    @Override
+    public List<BlogDto> blogListShow() {
+        return blogDao.listShow();
+    }
+
+    @Override
+    public List<BlogDto> blogListByTime(String createTime) {
+        return blogDao.listByTime(createTime);
+    }
+
+    @Override
+    public List<BlogTimeDto> getAllCreatTime() {
+        return blogDao.getAllCreatTime();
+    }
+
+    @Override
+    public List<BlogTimeDto> getThreeCreatTime() {
+        return blogDao.getThreeCreatTime();
     }
 }

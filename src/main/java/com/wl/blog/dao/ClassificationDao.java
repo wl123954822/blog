@@ -1,5 +1,6 @@
 package com.wl.blog.dao;
 
+import com.wl.blog.Dto.ClassificationDto;
 import com.wl.blog.entity.Classification;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,17 @@ public interface ClassificationDao {
     boolean updateClassifStatus(@Param("classificationId")int classificationId,@Param("classificationIdStatus") int classificationIdStatus);
 
     List<Classification> classifListByStatus(int classificationIdStatus);
+
+
+    //首页显示分类
+
+    /**
+     * name,和id
+     * @return
+     */
+    List<ClassificationDto> getClassificat();
+
+
+    //统计个数
+    Integer getCount(int classificationId);
 }

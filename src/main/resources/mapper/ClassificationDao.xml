@@ -37,4 +37,20 @@
     <select id="classifListByStatus" resultType="com.wl.blog.entity.Classification">
         SELECT * FROM tb_classification WHERE classificationIdStatus=#{classificationIdStatus}
     </select>
+
+    <select id="getClassificat" resultType="com.wl.blog.Dto.ClassificationDto">
+        SELECT
+            tb.classificationId ,
+            tc.classificationName,
+            tc.classificationIdStatus
+        FROM tb_blog tbb
+            INNER JOIN tb_contentcls tb ON tb.blogClassId=tbb.classificationId
+            INNER JOIN tb_classification tc ON tc.classificationId =tb.classificationId
+        WHERE tc.classificationIdStatus='1'
+        GROUP BY tb.classificationId
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(classificationId)  as result from tb_contentcls  WHERE classificationId=#{classificationId}
+    </select>
 </mapper>
