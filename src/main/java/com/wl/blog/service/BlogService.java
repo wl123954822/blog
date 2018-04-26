@@ -34,4 +34,7 @@ public interface BlogService  {
 
     //根据主键id获取博客
     List<BlogDto> blogListById(int blogId);
+
+    //最热文章
+    List<BlogDto> blogLiByHot();
 }

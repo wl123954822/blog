@@ -22,4 +22,7 @@ public interface BlogListDao {
      * @return
      */
     List<BlogDto> getBlogList(int blogId);
+
+    //最热文章
+    List<BlogDto> blogLiByHot();
 }

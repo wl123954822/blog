@@ -29,6 +29,15 @@ public class Blog implements Serializable {
 
     private int userId;
 
+    private String suolueTu;
+
+    public String getSuolueTu() {
+        return suolueTu;
+    }
+
+    public void setSuolueTu(String suolueTu) {
+        this.suolueTu = suolueTu;
+    }
 
     @Override
     public String toString() {

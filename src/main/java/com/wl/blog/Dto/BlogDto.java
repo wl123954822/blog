@@ -47,6 +47,16 @@ public class BlogDto implements Serializable {
 
     private int commentNum;
 
+    private String suolueTu;
+
+    public String getSuolueTu() {
+        return suolueTu;
+    }
+
+    public void setSuolueTu(String suolueTu) {
+        this.suolueTu = suolueTu;
+    }
+
     public int getCommentNum() {
         return commentNum;
     }

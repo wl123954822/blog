@@ -1,16 +1,14 @@
 package com.wl.blog.controller;
 
-import com.alibaba.druid.sql.visitor.functions.Char;
+import com.wl.blog.Dto.LaberDto;
 import com.wl.blog.entity.Label;
 import com.wl.blog.service.LaberService;
 import com.wl.blog.util.RegExpUtil;
+import com.wl.blog.util.StringRandom;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -69,5 +67,26 @@ public class LabelController {
         map.put("list",liberNlis);
         return map;
     }
+
+
+    @RequestMapping("/laberSet/{id}")
+    public Map<String,Object> labelSet(){
+        Map<String,Object> map=new HashMap<String, Object>();
+        List<LaberDto> labels=laberService.laberSet();
+        for (LaberDto laberDto : labels){
+            System.out.println(laberDto.getLabelName());
+            Set set = new HashSet(labels);
+        }
+       /* //把set转为字符串
+        String strQueueNumList = StringUtils.join(set);
+        String newlaberName=strQueueNumList.replaceAll("，",",");
+        String[] liberNlis=newlaberName.split(",");
+        List<String> lis = new ArrayList<>();
+       */
+
+        map.put("list","A");
+        return map;
+    }
+
 
 }

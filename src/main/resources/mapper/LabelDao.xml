@@ -20,4 +20,8 @@
     <select id="labelList" resultType="com.wl.blog.entity.Label">
         SELECT * FROM tb_label
     </select>
+
+    <select id="laberSet" resultType="com.wl.blog.Dto.LaberDto">
+         SELECT * FROM tb_label
+    </select>
 </mapper>

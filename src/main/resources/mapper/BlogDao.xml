@@ -7,18 +7,19 @@
                    keyProperty="id">
             SELECT LAST_INSERT_ID() as id;
         </selectKey>
-        INSERT INTO tb_blog (title,content,labelId,classificationId,abstractContent,userId)VALUES (
+        INSERT INTO tb_blog (title,content,labelId,classificationId,abstractContent,userId,suolueTu)VALUES (
         #{title},
         #{content},
         #{labelId},
         #{classificationId},
         #{abstractContent},
-        #{userId}
+        #{userId},
+        #{suolueTu}
         )
     </insert>
 
     <select id="listShow" resultType="com.wl.blog.Dto.BlogDto">
-        SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
+        SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,b.suolueTu,
             tc.classificationId,tc.classificationName,b.id as bid,
             tbc.blogClassId,
             u.username,u.id,

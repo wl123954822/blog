@@ -44,7 +44,7 @@
             tc.classificationName,
             tc.classificationIdStatus
         FROM tb_blog tbb
-            INNER JOIN tb_contentcls tb ON tb.blogClassId=tbb.classificationId
+            INNER JOIN tb_contentcls tb ON tb.blogClassId=tbb.id
             INNER JOIN tb_classification tc ON tc.classificationId =tb.classificationId
         WHERE tc.classificationIdStatus='1'
         GROUP BY tb.classificationId

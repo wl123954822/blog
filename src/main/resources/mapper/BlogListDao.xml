@@ -4,7 +4,7 @@
 
     <select id="blogList" resultType="com.wl.blog.Dto.BlogDto">
          SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
-        tc.classificationName,b.id as blogId,
+        tc.classificationName,b.id as blogId,b.suolueTu,
         u.username,
         t.clickNum,
         tl.labelName
@@ -13,7 +13,7 @@
         INNER JOIN tb_user u ON u.id=b.userId
         INNER JOIN tb_label tl ON tl.labelId=b.labelId
         INNER JOIN tb_click t ON t.blogId=b.id
-        ORDER BY t.clickNum DESC
+        ORDER BY b.createTime DESC
     </select>
 
     <select id="blogLiByCreate" resultType="com.wl.blog.Dto.BlogDto">
@@ -33,7 +33,7 @@
 
     <select id="getBlogList" resultType="com.wl.blog.Dto.BlogDto">
          SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
-          b.content,
+          b.content,b.suolueTu,
         tc.classificationName,b.id as blogId,
         u.username,
         t.clickNum,
@@ -44,5 +44,20 @@
         INNER JOIN tb_label tl ON tl.labelId=b.labelId
         INNER JOIN tb_click t ON t.blogId=b.id
         where blogId=#{blogId}
+    </select>
+
+    <select id="blogLiByHot" resultType="com.wl.blog.Dto.BlogDto">
+        SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
+        tc.classificationName,b.id as blogId,
+        u.username,
+        t.clickNum,
+        tl.labelName
+        FROM tb_blog b
+        INNER JOIN tb_classification tc ON tc.classificationId=b.classificationId
+        INNER JOIN tb_user u ON u.id=b.userId
+        INNER JOIN tb_label tl ON tl.labelId=b.labelId
+        INNER JOIN tb_click t ON t.blogId=b.id
+        ORDER BY t.clickNum DESC
+        LIMIT 3
     </select>
 </mapper>

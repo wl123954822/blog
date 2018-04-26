@@ -57,6 +57,7 @@ public class ClassificationServiceImpl  implements ClassificationService {
         List<ClassificationDto> list=classificationDao.getClassificat();
         for (ClassificationDto classificationDto:list) {
             int classId=classificationDto.getClassificationId();
+            System.out.println(classId);
             int result=classificationDao.getCount(classId);
             classificationDto.setCount(result);
         }

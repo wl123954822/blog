@@ -4,8 +4,12 @@ import com.wl.blog.Dto.BlogDto;
 import com.wl.blog.Dto.BlogTimeDto;
 import com.wl.blog.dao.BlogDao;
 import com.wl.blog.dao.BlogListDao;
+import com.wl.blog.dao.ClassificationDao;
+import com.wl.blog.dao.ContentclsDao;
 import com.wl.blog.entity.Blog;
+import com.wl.blog.entity.Contentcls;
 import com.wl.blog.service.BlogService;
+import com.wl.blog.service.ClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +29,20 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogListDao blogListDao;
 
+    @Autowired
+    private ContentclsDao contentclsDao;
+
     @Override
     public boolean addBlog(Blog blog) {
-        return blogDao.addBlog(blog);
+        Contentcls contentcls = new Contentcls();
+        if (blogDao.addBlog(blog)){
+            contentcls.setBlogClassId(blog.getId());
+            contentcls.setClassificationId(blog.getClassificationId());
+           if (contentclsDao.addContent(contentcls)){
+            return true;
+           }
+        }
+        return false;
     }
 
     @Override
@@ -75,6 +90,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogDto> blogListById(int blogId) {
         return blogListDao.getBlogList(blogId);
+    }
+
+    @Override
+    public List<BlogDto> blogLiByHot() {
+        return blogListDao.blogLiByHot();
     }
 
 

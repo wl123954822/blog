@@ -1,8 +1,11 @@
 package com.wl.blog.service;
 
+import com.wl.blog.Dto.LaberDto;
 import com.wl.blog.entity.Label;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author: wl
@@ -16,4 +19,6 @@ public interface LaberService {
     Label lablByName(String labelName);
 
     List<Label> labelList();
+
+    List<LaberDto> laberSet();
 }

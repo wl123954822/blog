@@ -2,6 +2,7 @@ package com.wl.blog.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import com.wl.blog.Dto.BlogDto;
 import com.wl.blog.Dto.BlogTimeDto;
 import com.wl.blog.entity.Blog;
@@ -246,6 +247,15 @@ public class BlogController {
             map.put("text","变更成功");
             map.put("list",blogDtos);
 
+        return map;
+    }
+
+
+    @RequestMapping("/blogHot")
+    public Map<String,Object> blogHotList(){
+        Map<String,Object> map=new HashMap<String, Object>();
+        List<BlogDto> list=blogService.blogLiByHot();
+        map.put("list",list);
         return map;
     }
 }
