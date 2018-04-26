@@ -25,4 +25,7 @@ public interface BlogDao {
     //获取显示的三个时间
     List<BlogTimeDto> getThreeCreatTime();
 
+    //获得博客总记录数
+    int getBolgNum();
+
 }

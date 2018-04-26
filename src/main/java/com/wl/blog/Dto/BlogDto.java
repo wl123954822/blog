@@ -2,6 +2,7 @@ package com.wl.blog.Dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: wl
@@ -43,6 +44,26 @@ public class BlogDto implements Serializable {
     private int blogClassId;
 
     private int bid;
+
+    private int commentNum;
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
+
+    private String[] laberNamLis;
+
+    public String[] getLaberNamLis() {
+        return laberNamLis;
+    }
+
+    public void setLaberNamLis(String[] laberNamLis) {
+        this.laberNamLis = laberNamLis;
+    }
 
     public int getBid() {
         return bid;

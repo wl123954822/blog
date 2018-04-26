@@ -21,16 +21,27 @@ public class UserLoginServiceImpl implements UserLoginService {
     @Override
     public User userLogin(String email) {
 
-        User user=userLogin.getByUserPasw(email);
+        User user = userLogin.getByUserPasw(email);
 
-       if (user==null){
-           return new User();
-       }else {
+        if (user == null) {
+            return new User();
+        } else {
 
-           if (userLogin.updateUseStatus(user.getId())) {
-               return user;
-           }
-       }
-        return new User();
+            if (userLogin.updateUseStatus(user.getId())) {
+                return user;
+            }
+            return user;
+        }
+    }
+
+    @Override
+    public User getUserById(int id) {
+        User user = userLogin.getUserById(id);
+
+        if (user == null){
+            return  new User();
+        }else {
+            return user;
+        }
     }
 }

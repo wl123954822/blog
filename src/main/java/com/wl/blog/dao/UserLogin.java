@@ -14,6 +14,6 @@ public interface UserLogin {
 
     Boolean updateUseStatus(int id);
 
-
+    User getUserById(@Param("id") int id);
 
 }

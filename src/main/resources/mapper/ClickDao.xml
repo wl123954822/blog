@@ -5,7 +5,7 @@
     <insert id="addClick" parameterType="com.wl.blog.entity.Click">
         <selectKey resultType="java.lang.Integer" order="AFTER"
                    keyProperty="id">
-            SELECT LAST_INSERT_ID() as id
+            SELECT LAST_INSERT_ID() as id;
         </selectKey>
         INSERT INTO tb_click (blogId,clickNum,statusId)VALUES (
         #{blogId},
@@ -16,9 +16,8 @@
     
     <update id="updateClick" >
         UPDATE tb_click
-        <set>
-            clickNum=#{clickNum}
-        </set>
+        SET
+        clickNum = #{clickNum}
         WHERE blogId=#{blogId}
     </update>
 </mapper>

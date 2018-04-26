@@ -9,9 +9,11 @@ import com.wl.blog.entity.Click;
 import com.wl.blog.entity.Label;
 import com.wl.blog.service.BlogService;
 import com.wl.blog.service.ClickService;
+import com.wl.blog.service.CommentService;
 import com.wl.blog.service.LaberService;
 import com.wl.blog.util.DateUtil;
 import com.wl.blog.util.RegExpUtil;
+import net.sf.jsqlparser.statement.replace.Replace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +33,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/blog")
-public class BlogController  {
+public class BlogController {
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -45,45 +47,51 @@ public class BlogController  {
     @Autowired
     private ClickService clickService;
 
+    @Autowired
+    private CommentService commentService;
+
     @RequestMapping("/add")
-    public Map<String,Object> addBlog(Blog blog, @RequestParam("labelName") String labelName, HttpSession session){
-        Map<String,Object> map=new HashMap<String, Object>();
-    Integer userId= (Integer) session.getAttribute("login");
-
-        Label label=laberService.lablByName(labelName);
-        blog.setLabelId(label.getLabelId());
-    if (RegExpUtil.isNull(userId+"")){
-            map.put("status","error");
-            map.put("text","请登录");
-        }else {
-
+    public Map<String, Object> addBlog(@RequestParam("labelName") String labelName,
+                                       @RequestParam("token") String token,
+                                       Blog blog) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        //创建博客的用户id
+        Integer userId = (Integer) redisTemplate.opsForValue().get(token);
+        Label label = new Label();
+        label.setLabelName(labelName);
+        if (laberService.insertLaber(label)) {
+            blog.setLabelId(label.getLabelId());
             blog.setUserId(userId);
-
             if (blogService.addBlog(blog)) {
                 //首次创建博客，设置添加点击，默认为0
-                int blogId=blog.getId();
-                Click click=new Click();
+                int blogId = blog.getId();
+                Click click = new Click();
                 click.setBlogId(blogId);
                 clickService.addClick(click);
                 map.put("status", "success");
                 map.put("text", "添加成功");
-            }
-            else {
+            } else {
                 map.put("error", "添加失败");
             }
+            return map;
         }
-
         return map;
     }
 
     @RequestMapping("/list")
-    public Map<String,Object> blogList( /*int pageSize,int pageIndex*/) throws ParseException {
+    public Map<String,Object> blogList(/* int pageSize,int pageNumber*/) throws ParseException {
+       // System.out.println("pageSize"+pageSize);
+       // System.out.println("pageNumber"+pageNumber);
         Map<String,Object> map=new HashMap<String, Object>();
         //开启分页
-      //  PageHelper.startPage(pageIndex,pageSize);
+      //  PageHelper.startPage(pageSize,pageNumber);
         List<BlogDto> list=blogService.blogList();
+        int page = blogService.getBlogNum(5);
 
         for (BlogDto blogDto : list) {
+            //获取评论数
+            int commentNum = commentService.countNum(blogDto.getBlogId());
+            blogDto.setCommentNum(commentNum);
         //现获取从数据库中获得的时间，为String对象
         String blogCreat = blogDto.getCreateTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
@@ -95,10 +103,10 @@ public class BlogController  {
 
         blogDto.setCreateTime(a);
     }
-       /* PageInfo<BlogDto> info=new PageInfo<BlogDto>(list);
-        map.put("total",info.getTotal());*/
+      // PageInfo<BlogDto> info = new PageInfo<>(list);
+      // map.put("total",info.getTotal());
         map.put("list", list);
-
+        map.put("totaPage",page);
         return map;
 }
 
@@ -127,8 +135,6 @@ public class BlogController  {
         List<BlogDto> list=blogService.blogListByTime(createTime);
             map.put("total", 10);
             map.put("rows", list);
-            System.out.println("[][]【】【】[][]"+createTime);
-
             return map;
 
         }
@@ -183,7 +189,6 @@ public class BlogController  {
             set.add(blogTimeDto.getCreateTime());
         }
         for (String s: set) {
-            System.out.println("48798" +s);
             BlogTimeDto blogTimeDto=new BlogTimeDto();
             blogTimeDto.setCreateTime(s);
             blogTimeDtos.add(blogTimeDto);
@@ -193,6 +198,54 @@ public class BlogController  {
 
 
         map.put("list",list);
+        return map;
+    }
+
+    /**
+     *
+     * @param pageNum 分几页
+     * @return
+     */
+    @RequestMapping("/total")
+    public Map<String,Object> getPage(int pageNum){
+        Map<String,Object> map = new HashMap<>();
+
+        int page = blogService.getBlogNum(pageNum);
+
+        map.put("totaPage",page);
+
+        return map;
+    }
+
+
+
+    @RequestMapping("/blogById")
+    public Map<String,Object> getBlogById(int blogId) throws ParseException {
+        Map<String,Object> map = new HashMap<>();
+
+        List<BlogDto> blogDtos = blogService.blogListById(blogId);
+        for(BlogDto blogDto :blogDtos) {
+            //每次博客访问，算点击一次
+            int clickNum = blogDto.getClickNum();
+            int newClick = clickNum + 1;
+            clickService.updateClick(blogId, newClick);
+            //时间转换
+            String time = blogDto.getCreateTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+            //将字符串转换成Date对象
+            Date date = sdf.parse(time);
+            //在将转换后的data对象转换为String
+            String a = DateUtil.newdate(date);
+            blogDto.setCreateTime(a);
+            String laberName = blogDto.getLabelName();
+            String newlaberName=laberName.replaceAll("，",",");
+            String[] liberNlis=newlaberName.split(",");
+            blogDto.setLaberNamLis(liberNlis);
+        }
+
+            map.put("text","变更成功");
+            map.put("list",blogDtos);
+
         return map;
     }
 }

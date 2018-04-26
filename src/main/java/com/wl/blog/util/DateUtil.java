@@ -32,5 +32,14 @@ public class DateUtil {
         return df.format(date);
     }
 
+    /**
+     * 年月日时分秒
+     * @param date
+     * @return
+     */
+    public static String yymsfm(Date date){
 
+        SimpleDateFormat df=new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        return df.format(date);
+    }
 }

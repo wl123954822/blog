@@ -28,4 +28,10 @@ public interface BlogService  {
 
     //获取显示的三个时间
     List<BlogTimeDto> getThreeCreatTime();
+
+    //获取博客总记录数，分页
+    int getBlogNum(int pageNum);
+
+    //根据主键id获取博客
+    List<BlogDto> blogListById(int blogId);
 }

@@ -28,5 +28,6 @@ public class HelloController {
     public String a(HttpServletRequest request){
         request.getSession().setAttribute("role","admin");
         return "ads";
+        //阿什顿
     }
 }

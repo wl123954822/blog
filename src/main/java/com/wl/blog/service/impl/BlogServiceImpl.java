@@ -59,4 +59,23 @@ public class BlogServiceImpl implements BlogService {
     public List<BlogTimeDto> getThreeCreatTime() {
         return blogDao.getThreeCreatTime();
     }
+
+    @Override
+    public int getBlogNum(int pageNum) {
+
+        int blogNum = blogDao.getBolgNum();
+        //判断有没有余数
+        if (blogNum % pageNum==0){
+            return blogNum/pageNum;
+        }else {
+            return blogNum/pageNum+1;
+        }
+    }
+
+    @Override
+    public List<BlogDto> blogListById(int blogId) {
+        return blogListDao.getBlogList(blogId);
+    }
+
+
 }

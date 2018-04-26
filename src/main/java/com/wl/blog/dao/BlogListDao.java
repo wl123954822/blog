@@ -16,5 +16,10 @@ public interface BlogListDao {
     //最新文章
     List<BlogDto> blogLiByCreate();
 
-
+    /**
+     * 根据主键id查询
+     * @param blogId
+     * @return
+     */
+    List<BlogDto> getBlogList(int blogId);
 }

@@ -1,16 +1,17 @@
 package com.wl.blog.controller;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
 import com.wl.blog.entity.Label;
 import com.wl.blog.service.LaberService;
 import com.wl.blog.util.RegExpUtil;
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * @Author: wl
@@ -53,7 +54,19 @@ public class LabelController {
     public Map<String,Object> labelList(){
         Map<String,Object> map=new HashMap<String, Object>();
         List<Label> labels=laberService.labelList();
-        map.put("list",labels);
+        List<String> newArr = new ArrayList();
+        for (Label label : labels){
+            //把名称取出来，放入新List中
+            newArr.add(label.getLabelName());
+        }
+        //用set去重
+        Set set = new HashSet(newArr);
+        //把set转为字符串
+        String strQueueNumList = StringUtils.join(set);
+        String newlaberName=strQueueNumList.replaceAll("，",",");
+        String[] liberNlis=newlaberName.split(",");
+
+        map.put("list",liberNlis);
         return map;
     }
 

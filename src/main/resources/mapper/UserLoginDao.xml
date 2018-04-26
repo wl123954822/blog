@@ -14,5 +14,8 @@
     WHERE id=#{id}
 </update>
 
+    <select id="getUserById" resultType="com.wl.blog.entity.User">
+        SELECT * from tb_user where id=#{id}
+    </select>
 
 </mapper>

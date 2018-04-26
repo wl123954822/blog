@@ -5,7 +5,7 @@
     <insert id="insertLaber" parameterType="com.wl.blog.entity.Label">
         <selectKey resultType="java.lang.Integer" order="AFTER"
                    keyProperty="labelId">
-            SELECT LAST_INSERT_ID() as id
+            SELECT LAST_INSERT_ID() as id;
         </selectKey>
         INSERT INTO tb_label (labelName,labelStatus)VALUES (
         #{labelName},

@@ -10,4 +10,6 @@ import com.wl.blog.util.ResultUtil;
  */
 public interface UserLoginService {
     User userLogin(String email);
+
+    User getUserById(int id);
 }

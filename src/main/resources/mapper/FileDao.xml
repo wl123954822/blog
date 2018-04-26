@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wl.blog.dao.file.FileDao">
+
+    <insert id="saveImage" parameterType="com.wl.blog.entity.file.ImageFile">
+        <selectKey resultType="java.lang.Integer" order="AFTER"
+                   keyProperty="fileId">
+            SELECT LAST_INSERT_ID() as id;
+        </selectKey>
+        INSERT INTO tb_file(name,contentType,size,uploadDate,md5,path,content)VALUES (
+        #{name},
+        #{contentType},
+        #{size},
+        #{uploadDate},
+        #{md5},
+        #{path},
+        #{content}
+        )
+    </insert>
+
+    <delete id="removeImage"  parameterType="java.lang.Integer">
+        DELETE FROM tb_file
+        WHERE fileId=#{fileId}
+    </delete>
+
+    <select id="getFileById" resultType="com.wl.blog.entity.file.ImageFile">
+        SELECT * FROM tb_file WHERE fileId=#{fileId}
+    </select>
+
+    <select id="listImages" resultType="com.wl.blog.entity.file.ImageFile">
+        SELECT * FROM tb_file
+    </select>
+</mapper>

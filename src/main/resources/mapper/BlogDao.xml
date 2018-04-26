@@ -5,7 +5,7 @@
     <insert id="addBlog" parameterType="com.wl.blog.entity.Blog">
         <selectKey resultType="java.lang.Integer" order="AFTER"
                    keyProperty="id">
-            SELECT LAST_INSERT_ID() as id
+            SELECT LAST_INSERT_ID() as id;
         </selectKey>
         INSERT INTO tb_blog (title,content,labelId,classificationId,abstractContent,userId)VALUES (
         #{title},
@@ -24,7 +24,7 @@
             u.username,u.id,
             t.clickNum,t.blogId,
             tl.labelId,tl.labelName
-        FROM tb_blog b
+        FROM tbBlog b
             INNER JOIN tb_contentcls tbc ON tbc.blogClassId=b.classificationId
             INNER JOIN tb_classification tc ON tc.classificationId=tbc.classificationId
             INNER JOIN tb_user u ON u.id=b.userId
@@ -46,5 +46,9 @@
 
     <select id="getThreeCreatTime" resultType="com.wl.blog.Dto.BlogTimeDto">
         SELECT id,createTime FROM tb_blog ORDER BY   createTime DESC LIMIT 3
+    </select>
+
+    <select id="getBolgNum" resultType="java.lang.Integer">
+        select count(*) as blogNum from tb_blog
     </select>
 </mapper>
