@@ -28,7 +28,7 @@
         INNER JOIN tb_label tl ON tl.labelId=b.labelId
         INNER JOIN tb_click t ON t.blogId=b.id
         ORDER BY b.createTime DESC
-        LIMIT 3
+        LIMIT 4
     </select>
 
     <select id="getBlogList" resultType="com.wl.blog.Dto.BlogDto">
@@ -58,6 +58,6 @@
         INNER JOIN tb_label tl ON tl.labelId=b.labelId
         INNER JOIN tb_click t ON t.blogId=b.id
         ORDER BY t.clickNum DESC
-        LIMIT 3
+        LIMIT 4
     </select>
 </mapper>
