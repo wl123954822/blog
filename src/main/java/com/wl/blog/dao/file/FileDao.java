@@ -4,6 +4,7 @@ import com.wl.blog.entity.file.ImageFile;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface FileDao {
 
