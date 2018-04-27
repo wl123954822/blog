@@ -39,7 +39,7 @@ public class TesUser implements Serializable {
         this.age = age;
     }
 
-    public TesUser(Integer id,long age,String name) {
+    public TesUser(Integer id, long age, String name) {
         this.id = id;
         this.age = age;
         this.name = name;

@@ -13,8 +13,8 @@
         #{statusId}
         )
     </insert>
-    
-    <update id="updateClick" >
+
+    <update id="updateClick">
         UPDATE tb_click
         SET
         clickNum = #{clickNum}

@@ -1,6 +1,7 @@
 package com.wl.blog.dao;
 
 import com.wl.blog.Dto.BlogDto;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @Description:
  * @Date:Create in 2017/11/16-15:15
  */
+@Mapper
 public interface BlogListDao {
 
     List<BlogDto> blogList();
@@ -18,6 +20,7 @@ public interface BlogListDao {
 
     /**
      * 根据主键id查询
+     *
      * @param blogId
      * @return
      */

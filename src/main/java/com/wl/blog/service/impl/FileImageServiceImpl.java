@@ -16,10 +16,10 @@ public class FileImageServiceImpl implements FileImageService {
 
     @Override
     public ImageFile saveImage(ImageFile imageFile) {
-      if ( fileDao.saveImage(imageFile)){
-          System.out.println(imageFile.getFileId());
-          return fileDao.getFileById(imageFile.getFileId());
-      }
+        if (fileDao.saveImage(imageFile)) {
+            System.out.println(imageFile.getFileId());
+            return fileDao.getFileById(imageFile.getFileId());
+        }
         return new ImageFile();
     }
 

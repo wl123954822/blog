@@ -37,55 +37,54 @@ public class TestController {
 
 
     @RequestMapping("/hello")
-    public String index(){
+    public String index() {
         //存字符串
-        stringRedisTemplate.opsForValue().set("aaa","111");
-        String string=stringRedisTemplate.opsForValue().get("aaa");
+        stringRedisTemplate.opsForValue().set("aaa", "111");
+        String string = stringRedisTemplate.opsForValue().get("aaa");
         System.out.println(string);
 
         //存对象
-        TesUser user=new TesUser(1,2,"钢铁1");
-        redisTemplate.opsForValue().set(user.getName(),user);
+        TesUser user = new TesUser(1, 2, "钢铁1");
+        redisTemplate.opsForValue().set(user.getName(), user);
 
-        user=new TesUser(2,2,"钢铁2");
-        redisTemplate.opsForValue().set(user.getName(),user);
+        user = new TesUser(2, 2, "钢铁2");
+        redisTemplate.opsForValue().set(user.getName(), user);
 
-        user=new TesUser(3,2,"钢铁3");
-        redisTemplate.opsForValue().set(user.getName(),user);
+        user = new TesUser(3, 2, "钢铁3");
+        redisTemplate.opsForValue().set(user.getName(), user);
 
-        TesUser user1= (TesUser) redisTemplate.opsForValue().get("钢铁1");
+        TesUser user1 = (TesUser) redisTemplate.opsForValue().get("钢铁1");
         System.out.println(user1.getAge());
-        System.out.println(((TesUser)redisTemplate.opsForValue().get("钢铁2")).getAge());
-        System.out.println(((TesUser)redisTemplate.opsForValue().get("钢铁3")).getAge());
-
+        System.out.println(((TesUser) redisTemplate.opsForValue().get("钢铁2")).getAge());
+        System.out.println(((TesUser) redisTemplate.opsForValue().get("钢铁3")).getAge());
 
 
         return "Hello World";
     }
 
     @RequestMapping("/b")
-    public Map<String,Object> ds(){
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<TesUser> list=testService.list();
-        System.out.println("【】【】【】【"+list.size());
+    public Map<String, Object> ds() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<TesUser> list = testService.list();
+        System.out.println("【】【】【】【" + list.size());
 
-        redisTemplate.opsForValue().set("list",list);
-        map.put("list",list);
+        redisTemplate.opsForValue().set("list", list);
+        map.put("list", list);
         return map;
     }
 
     @RequestMapping("/c")
-    public Map<String,Object> sa(){
-        Map<String,Object> map=new HashMap<String, Object>();
+    public Map<String, Object> sa() {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        TesUser tesUser= (TesUser) redisTemplate.opsForValue().get("listt");
+        TesUser tesUser = (TesUser) redisTemplate.opsForValue().get("listt");
         redisTemplate.delete("listt");
 
-        List list2= (List) redisTemplate.opsForValue().get("list");
-        map.put("list新数量",list2);
-        List list=new ArrayList();
+        List list2 = (List) redisTemplate.opsForValue().get("list");
+        map.put("list新数量", list2);
+        List list = new ArrayList();
         list.add(tesUser);
-        map.put("list",list);
+        map.put("list", list);
         return map;
     }
 

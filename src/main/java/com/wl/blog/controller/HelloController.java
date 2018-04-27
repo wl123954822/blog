@@ -16,17 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class HelloController {
 
-    @RequestMapping(value = "/admin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE,method = RequestMethod.GET)
+    @RequestMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
     //配置注解权限，允许身份为admin的人访问
     @Access(authorities = {"admin"})
-    public String hello(HttpServletRequest request){
+    public String hello(HttpServletRequest request) {
 
         return "Hello admin";
     }
 
     @RequestMapping("/a")
-    public String a(HttpServletRequest request){
-        request.getSession().setAttribute("role","admin");
+    public String a(HttpServletRequest request) {
+        request.getSession().setAttribute("role", "admin");
         return "ads";
         //阿什顿
     }

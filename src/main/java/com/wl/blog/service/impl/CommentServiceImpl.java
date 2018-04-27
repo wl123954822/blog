@@ -27,10 +27,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public boolean deleteComment(int id) {
-        if (RegExpUtil.isNull(id+"")&&RegExpUtil.isNull(id+"")){
+        if (RegExpUtil.isNull(id + "") && RegExpUtil.isNull(id + "")) {
             return false;
-        }else {
-            return  commentDao.deleteCommentById(id);
+        } else {
+            return commentDao.deleteCommentById(id);
         }
     }
 
@@ -41,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public int countNum(int blogId) {
-             int pid=0;
-        return commentDao.commentNum(pid,blogId);
+        int pid = 0;
+        return commentDao.commentNum(pid, blogId);
     }
 }

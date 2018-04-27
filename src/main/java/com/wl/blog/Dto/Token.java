@@ -9,7 +9,7 @@ public class Token implements Serializable {
 
     private String userName;
 
-    private int  session;
+    private int session;
 
     public String getUserName() {
         return userName;

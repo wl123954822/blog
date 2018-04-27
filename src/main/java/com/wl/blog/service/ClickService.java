@@ -9,7 +9,7 @@ import com.wl.blog.entity.Click;
  */
 public interface ClickService {
 
-       boolean addClick(Click click);
+    boolean addClick(Click click);
 
-       boolean updateClick(int blogId,int clickNum);
+    boolean updateClick(int blogId, int clickNum);
 }

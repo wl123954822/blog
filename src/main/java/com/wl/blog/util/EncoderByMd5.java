@@ -17,9 +17,9 @@ public class EncoderByMd5 {
     public static String encoderByMd5f(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         //确定计算方法
         MessageDigest md5 = MessageDigest.getInstance("MD5");
-        BASE64Encoder base64Encoder=new BASE64Encoder();
+        BASE64Encoder base64Encoder = new BASE64Encoder();
         //加密后的字符串
-        String newStr=base64Encoder.encode(md5.digest(str.getBytes("utf-8")));
+        String newStr = base64Encoder.encode(md5.digest(str.getBytes("utf-8")));
         return newStr;
     }
-    }
+}

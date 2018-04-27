@@ -7,7 +7,7 @@ import com.wl.blog.entity.Contentcls;
  * @Description:
  * @Date:Create in 2017/11/14-16:35
  */
-public interface ContentclsService  {
+public interface ContentclsService {
 
     boolean addContentcls(Contentcls contentcls);
 }

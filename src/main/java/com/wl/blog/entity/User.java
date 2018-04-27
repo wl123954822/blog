@@ -11,7 +11,7 @@ import java.util.Date;
  * @Date:Create in 2017/11/3-16:30
  */
 
-public class User implements Serializable{
+public class User implements Serializable {
 
     private int id;
 

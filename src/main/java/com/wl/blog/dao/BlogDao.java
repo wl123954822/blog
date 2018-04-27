@@ -3,6 +3,8 @@ package com.wl.blog.dao;
 import com.wl.blog.Dto.BlogDto;
 import com.wl.blog.Dto.BlogTimeDto;
 import com.wl.blog.entity.Blog;
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  * @Description:
  * @Date:Create in 2017/11/14-13:54
  */
+@Mapper
 public interface BlogDao {
 
     boolean addBlog(Blog blog);

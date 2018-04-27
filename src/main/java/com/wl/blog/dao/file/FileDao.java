@@ -1,14 +1,15 @@
 package com.wl.blog.dao.file;
 
 import com.wl.blog.entity.file.ImageFile;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface FileDao {
 
     /**
-    * 保存文件
-    */
+     * 保存文件
+     */
     Boolean saveImage(ImageFile imageFile);
 
     /**

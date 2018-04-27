@@ -76,9 +76,9 @@ public class UserController {
                     map.put("status", "success");
                     map.put("text", "登录成功");
                     String tokenNum = StringRandom.getStringRandom(8);
-                    map.put("token",tokenNum);
+                    map.put("token", tokenNum);
                     //设置登录
-                    redisTemplate.opsForValue().set(tokenNum,user.getId());
+                    redisTemplate.opsForValue().set(tokenNum, user.getId());
 
                 } else {
                     map.put("status", "error");
@@ -94,18 +94,18 @@ public class UserController {
 
 
     @RequestMapping("/getUserInfo")
-    public Map<String,Object> getUserInfo(String token,HttpServletRequest request){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getUserInfo(String token, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
         Integer userId = (Integer) redisTemplate.opsForValue().get(token);
-        if (userId==null){
-            map.put("status","error");
-            map.put("text","无用户登录");
-        }else {
+        if (userId == null) {
+            map.put("status", "error");
+            map.put("text", "无用户登录");
+        } else {
             User user = userLoginService.getUserById(userId);
-            map.put("status","success");
-            map.put("username",user.getUsername());
+            map.put("status", "success");
+            map.put("username", user.getUsername());
         }
-        return  map;
+        return map;
     }
 }
 

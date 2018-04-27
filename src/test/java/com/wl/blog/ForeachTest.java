@@ -11,26 +11,26 @@ import java.util.List;
  */
 public class ForeachTest {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        int[] arr={1,2,3,4,5};
+        int[] arr = {1, 2, 3, 4, 5};
         /**
          * 旧式遍历
          */
-        for(int i=0; i<arr.length;i++){
-           System.out.println("旧式遍历"+arr[i]);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("旧式遍历" + arr[i]);
         }
 
         /**
          * 新式遍历
          */
-        for (int element: arr) {
-            System.out.println("新式遍历"+element);
+        for (int element : arr) {
+            System.out.println("新式遍历" + element);
         }
 
 
         /************************遍历二维数组***************************/
-                int[][] arr2={{1,2,3},{4,5,6},{7,8,9}};
+        int[][] arr2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         /**
          * 旧式遍历
          */
@@ -56,19 +56,19 @@ public class ForeachTest {
         /**
          * 普通for循环遍历
          */
-        for (int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }
         /**
          * 迭代器遍历
          */
-        for (Iterator<String> iter=list.iterator(); iter.hasNext();){
+        for (Iterator<String> iter = list.iterator(); iter.hasNext(); ) {
             System.out.println(iter.next());
         }
         /**
          * 增强for
          */
-        for (String str:list) {
+        for (String str : list) {
             System.out.println(str);
         }
     }

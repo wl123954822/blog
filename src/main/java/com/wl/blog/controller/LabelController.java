@@ -24,14 +24,14 @@ public class LabelController {
     private LaberService laberService;
 
     @RequestMapping("/add")
-    public Map<String,Object> addLabel(Label label){
-        Map<String,Object> map=new  HashMap<String, Object>();
-        Label label1=laberService.lablByName(label.getLabelName());
-        if (!RegExpUtil.isNull(label.getLabelName())){
-            if (label1!=null){
-                map.put("status","error");
-                map.put("text","重复");
-            }else {
+    public Map<String, Object> addLabel(Label label) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Label label1 = laberService.lablByName(label.getLabelName());
+        if (!RegExpUtil.isNull(label.getLabelName())) {
+            if (label1 != null) {
+                map.put("status", "error");
+                map.put("text", "重复");
+            } else {
                 if (laberService.insertLaber(label)) {
                     map.put("status", "success");
                     map.put("text", "添加成功");
@@ -40,20 +40,20 @@ public class LabelController {
                     map.put("text", "添加失败");
                 }
             }
-        }else {
-            map.put("status","error");
-            map.put("text","参数错误");
+        } else {
+            map.put("status", "error");
+            map.put("text", "参数错误");
         }
         return map;
     }
 
 
     @RequestMapping("/list")
-    public Map<String,Object> labelList(){
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<Label> labels=laberService.labelList();
+    public Map<String, Object> labelList() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Label> labels = laberService.labelList();
         List<String> newArr = new ArrayList();
-        for (Label label : labels){
+        for (Label label : labels) {
             //把名称取出来，放入新List中
             newArr.add(label.getLabelName());
         }
@@ -61,19 +61,19 @@ public class LabelController {
         Set set = new HashSet(newArr);
         //把set转为字符串
         String strQueueNumList = StringUtils.join(set);
-        String newlaberName=strQueueNumList.replaceAll("，",",");
-        String[] liberNlis=newlaberName.split(",");
+        String newlaberName = strQueueNumList.replaceAll("，", ",");
+        String[] liberNlis = newlaberName.split(",");
 
-        map.put("list",liberNlis);
+        map.put("list", liberNlis);
         return map;
     }
 
 
     @RequestMapping("/laberSet/{id}")
-    public Map<String,Object> labelSet(){
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<LaberDto> labels=laberService.laberSet();
-        for (LaberDto laberDto : labels){
+    public Map<String, Object> labelSet() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<LaberDto> labels = laberService.laberSet();
+        for (LaberDto laberDto : labels) {
             System.out.println(laberDto.getLabelName());
             Set set = new HashSet(labels);
         }
@@ -84,7 +84,7 @@ public class LabelController {
         List<String> lis = new ArrayList<>();
        */
 
-        map.put("list","A");
+        map.put("list", "A");
         return map;
     }
 

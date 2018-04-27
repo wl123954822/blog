@@ -18,7 +18,6 @@ public class ClickServiceImpl implements ClickService {
     private ClickDao clickDao;
 
 
-
     @Override
     public boolean addClick(Click click) {
         return clickDao.addClick(click);

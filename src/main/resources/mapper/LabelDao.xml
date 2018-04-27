@@ -22,6 +22,6 @@
     </select>
 
     <select id="laberSet" resultType="com.wl.blog.Dto.LaberDto">
-         SELECT * FROM tb_label
+        SELECT * FROM tb_label
     </select>
 </mapper>

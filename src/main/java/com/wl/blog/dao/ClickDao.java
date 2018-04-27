@@ -1,6 +1,7 @@
 package com.wl.blog.dao;
 
 import com.wl.blog.entity.Click;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -8,10 +9,11 @@ import org.apache.ibatis.annotations.Param;
  * @Description:点击增加
  * @Date:Create in 2017/11/16-14:51
  */
+@Mapper
 public interface ClickDao {
 
-        boolean addClick(Click click);
+    boolean addClick(Click click);
 
-        boolean updateClick(@Param("blogId") int blogId,@Param("clickNum") int clickNum);
+    boolean updateClick(@Param("blogId") int blogId, @Param("clickNum") int clickNum);
 
 }

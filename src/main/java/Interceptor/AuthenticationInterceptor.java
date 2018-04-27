@@ -30,7 +30,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         Method method = handlerMethod.getMethod();
         //获取方法上的Access注解
         Access access = method.getAnnotation(Access.class);
-        System.out.println("ACCESS"+access);
+        System.out.println("ACCESS" + access);
         if (access == null) {
             return true;
         }
@@ -43,8 +43,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
                 authSet.add(authory);
             }
             //String role = httpServletRequest.getParameter("admin");
-            String role= (String) httpServletRequest.getSession().getAttribute("role");
-            System.out.println("ROLE 【】"+role);
+            String role = (String) httpServletRequest.getSession().getAttribute("role");
+            System.out.println("ROLE 【】" + role);
             if (!RegExpUtil.isNull(role)) {
                 if (authSet.contains(role)) {
                     return true;

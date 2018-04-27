@@ -35,12 +35,12 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public boolean addBlog(Blog blog) {
         Contentcls contentcls = new Contentcls();
-        if (blogDao.addBlog(blog)){
+        if (blogDao.addBlog(blog)) {
             contentcls.setBlogClassId(blog.getId());
             contentcls.setClassificationId(blog.getClassificationId());
-           if (contentclsDao.addContent(contentcls)){
-            return true;
-           }
+            if (contentclsDao.addContent(contentcls)) {
+                return true;
+            }
         }
         return false;
     }
@@ -80,10 +80,10 @@ public class BlogServiceImpl implements BlogService {
 
         int blogNum = blogDao.getBolgNum();
         //判断有没有余数
-        if (blogNum % pageNum==0){
-            return blogNum/pageNum;
-        }else {
-            return blogNum/pageNum+1;
+        if (blogNum % pageNum == 0) {
+            return blogNum / pageNum;
+        } else {
+            return blogNum / pageNum + 1;
         }
     }
 

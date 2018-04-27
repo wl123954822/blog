@@ -32,11 +32,11 @@ public class FileUploadController {
         String imagePath = "E://nginx//";
         String fileLocation = "/images/blogImg/";
         String path = imagePath + fileLocation;
-        if (file.getSize()==0){
-            map.put("status","error");
-            map.put("test","文件为空");
+        if (file.getSize() == 0) {
+            map.put("status", "error");
+            map.put("test", "文件为空");
             return map;
-        }else {
+        } else {
             //上传文件名字
             String fileName = file.getOriginalFilename();
             //存储数据库path
@@ -49,7 +49,7 @@ public class FileUploadController {
                 //将信息存到数据库
                 returnimageFile = fileImageService.saveImage(f);
                 file.transferTo(new File(path + file.getOriginalFilename()));
-                map.put("status","success");
+                map.put("status", "success");
                 map.put("imagePath", fileLocation + file.getOriginalFilename());
                 map.put("imageId", returnimageFile.getFileId());
             } catch (Exception e) {

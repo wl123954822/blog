@@ -32,12 +32,12 @@ public class ContentclsController {
     private BlogService blogService;
 
     @RequestMapping("/add")
-    public Map<String,Object> contclss( Contentcls contentcls){
-        Map<String,Object> map=new HashMap<String, Object>();
+    public Map<String, Object> contclss(Contentcls contentcls) {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        if (contentclsService.addContentcls(contentcls)){
+        if (contentclsService.addContentcls(contentcls)) {
 
-            map.put("status","成功");
+            map.put("status", "成功");
         }
         return map;
     }

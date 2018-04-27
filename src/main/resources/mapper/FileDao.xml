@@ -18,7 +18,7 @@
         )
     </insert>
 
-    <delete id="removeImage"  parameterType="java.lang.Integer">
+    <delete id="removeImage" parameterType="java.lang.Integer">
         DELETE FROM tb_file
         WHERE fileId=#{fileId}
     </delete>

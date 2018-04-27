@@ -9,16 +9,16 @@ import com.wl.blog.entity.Result;
  */
 public class ResultUtil {
 
-    public static Result success(Object object){
-        Result result=new Result();
+    public static Result success(Object object) {
+        Result result = new Result();
         result.setData(object);
         result.setCode(0);
         result.setMsg("成功");
         return result;
     }
 
-    public static Result erroe(){
-        Result result=new Result();
+    public static Result erroe() {
+        Result result = new Result();
         result.setCode(1);
         result.setMsg("错误");
         return result;

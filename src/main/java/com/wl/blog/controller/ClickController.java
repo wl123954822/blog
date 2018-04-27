@@ -26,24 +26,23 @@ public class ClickController {
     private ClickService clickService;
 
 
-
     @RequestMapping("/update")
-    public  Map<String,Object> addClick(@RequestParam("blogId") int blogId,
+    public Map<String, Object> addClick(@RequestParam("blogId") int blogId,
                                         @RequestParam("clickNum") int clickNum,
-                                        HttpSession session){
-        Map<String,Object> map=new HashMap<String, Object>();
-        Integer userId= (Integer) session.getAttribute("login");
-        if (RegExpUtil.isNull(userId+"")){
-                    map.put("status","未登录");
-        }else {
-            int newClick=clickNum+1;
-            if ( clickService.updateClick(blogId,newClick)){
-                map.put("status","success");
-                map.put("text","更改成功");
+                                        HttpSession session) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Integer userId = (Integer) session.getAttribute("login");
+        if (RegExpUtil.isNull(userId + "")) {
+            map.put("status", "未登录");
+        } else {
+            int newClick = clickNum + 1;
+            if (clickService.updateClick(blogId, newClick)) {
+                map.put("status", "success");
+                map.put("text", "更改成功");
             }
         }
 
-       return map;
+        return map;
 
     }
 

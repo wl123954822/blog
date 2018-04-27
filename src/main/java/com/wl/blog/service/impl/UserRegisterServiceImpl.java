@@ -22,13 +22,13 @@ public class UserRegisterServiceImpl implements UserRegisterService {
     public Boolean userRegister(User user) {
         //TODO
         // 判断有无注册
-       Integer integer= userRegister.selectEmail(user.getEmail());
+        Integer integer = userRegister.selectEmail(user.getEmail());
 
-       if (RegExpUtil.isNull(integer+"")){
-           userRegister.register(user);
-           return true;
-       }
-       return false;
+        if (RegExpUtil.isNull(integer + "")) {
+            userRegister.register(user);
+            return true;
+        }
+        return false;
 
     }
 }

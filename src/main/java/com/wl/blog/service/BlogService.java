@@ -11,7 +11,7 @@ import java.util.List;
  * @Description:
  * @Date:Create in 2017/11/14-13:57
  */
-public interface BlogService  {
+public interface BlogService {
 
     boolean addBlog(Blog blog);
 

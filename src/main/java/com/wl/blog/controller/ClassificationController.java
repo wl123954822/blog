@@ -28,21 +28,21 @@ public class ClassificationController {
     private ClassificationService classificationService;
 
     @RequestMapping("/add")
-    public Map<String,Object> addClassific(Classification classification){
+    public Map<String, Object> addClassific(Classification classification) {
         Map<String, Object> map = new HashMap<String, Object>();
         Classification classifications = classificationService.classByname(classification.getClassificationName());
 
         if (!RegExpUtil.isNull(classification.getClassificationName())) {
-                if (classifications!=null) {
-                    map.put("status", "error");
-                    map.put("text", "重复");
-                } else {
-                    if (classificationService.insertClassification(classification)) {
-                        map.put("status", "success");
-                        map.put("text", "添加成功");
-                    }
+            if (classifications != null) {
+                map.put("status", "error");
+                map.put("text", "重复");
+            } else {
+                if (classificationService.insertClassification(classification)) {
+                    map.put("status", "success");
+                    map.put("text", "添加成功");
                 }
-                return map;
+            }
+            return map;
         } else {
             map.put("status", "error");
             map.put("text", "传参错误");
@@ -52,12 +52,12 @@ public class ClassificationController {
 
 
     @RequestMapping("/list")
-    public Map<String,Object> classificationList(){
-        Map<String,Object> map=new HashMap<String, Object>();
+    public Map<String, Object> classificationList() {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-       List<Classification> classifications= classificationService.classifList();
-        map.put("total",10);
-       map.put("rows",classifications);
+        List<Classification> classifications = classificationService.classifList();
+        map.put("total", 10);
+        map.put("rows", classifications);
         return map;
     }
 
@@ -99,22 +99,22 @@ public class ClassificationController {
 
 
     @RequestMapping("/classifSta")
-    public Map<String,Object> classList(@RequestParam("classificationIdStatus") int classificationIdStatus){
+    public Map<String, Object> classList(@RequestParam("classificationIdStatus") int classificationIdStatus) {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        List<Classification>  list= classificationService.classifListByStatus(classificationIdStatus);
+        List<Classification> list = classificationService.classifListByStatus(classificationIdStatus);
 
-        map.put("list",list);
+        map.put("list", list);
         return map;
     }
 
     @RequestMapping("/classNameAndId")
-    public Map<String,Object> classNanI(){
-        Map<String,Object> map=new HashMap<String, Object>();
+    public Map<String, Object> classNanI() {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        List<ClassificationDto> list=classificationService.getNameId();
+        List<ClassificationDto> list = classificationService.getNameId();
 
-        map.put("nllist",list);
+        map.put("nllist", list);
         return map;
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
  * @Date:Create in 2017/11/10-10:06
  */
 @Service
-public class ClassificationServiceImpl  implements ClassificationService {
+public class ClassificationServiceImpl implements ClassificationService {
 
     @Autowired
     private ClassificationDao classificationDao;
@@ -42,8 +42,8 @@ public class ClassificationServiceImpl  implements ClassificationService {
     }
 
     @Override
-    public boolean updateClassifStatu(int classificationId,int classificationIdStatus) {
-        return classificationDao.updateClassifStatus(classificationId,classificationIdStatus);
+    public boolean updateClassifStatu(int classificationId, int classificationIdStatus) {
+        return classificationDao.updateClassifStatus(classificationId, classificationIdStatus);
     }
 
     @Override
@@ -54,11 +54,11 @@ public class ClassificationServiceImpl  implements ClassificationService {
     @Override
     public List<ClassificationDto> getNameId() {
 
-        List<ClassificationDto> list=classificationDao.getClassificat();
-        for (ClassificationDto classificationDto:list) {
-            int classId=classificationDto.getClassificationId();
+        List<ClassificationDto> list = classificationDao.getClassificat();
+        for (ClassificationDto classificationDto : list) {
+            int classId = classificationDto.getClassificationId();
             System.out.println(classId);
-            int result=classificationDao.getCount(classId);
+            int result = classificationDao.getCount(classId);
             classificationDto.setCount(result);
         }
         return list;

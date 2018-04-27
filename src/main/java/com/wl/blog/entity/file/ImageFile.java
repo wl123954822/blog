@@ -82,14 +82,15 @@ public class ImageFile {
     }
 
 
-    public ImageFile(String name, String contentType, long size,byte[] content) {
+    public ImageFile(String name, String contentType, long size, byte[] content) {
         this.name = name;
         this.contentType = contentType;
         this.size = size;
         this.uploadDate = new Date();
         this.content = content;
     }
-    public ImageFile(){
+
+    public ImageFile() {
 
     }
 

@@ -29,7 +29,8 @@ import java.util.*;
 /**
  * @Author: wl
  * @Description:
- * @Date:Create in 2017/11/14-13:59*/
+ * @Date:Create in 2017/11/14-13:59
+ */
 
 
 @RestController
@@ -80,44 +81,44 @@ public class BlogController {
     }
 
     @RequestMapping("/list")
-    public Map<String,Object> blogList(/* int pageSize,int pageNumber*/) throws ParseException {
-       // System.out.println("pageSize"+pageSize);
-       // System.out.println("pageNumber"+pageNumber);
-        Map<String,Object> map=new HashMap<String, Object>();
+    public Map<String, Object> blogList(/* int pageSize,int pageNumber*/) throws ParseException {
+        // System.out.println("pageSize"+pageSize);
+        // System.out.println("pageNumber"+pageNumber);
+        Map<String, Object> map = new HashMap<String, Object>();
         //开启分页
-      //  PageHelper.startPage(pageSize,pageNumber);
-        List<BlogDto> list=blogService.blogList();
+        //  PageHelper.startPage(pageSize,pageNumber);
+        List<BlogDto> list = blogService.blogList();
         int page = blogService.getBlogNum(5);
 
         for (BlogDto blogDto : list) {
             //获取评论数
             int commentNum = commentService.countNum(blogDto.getBlogId());
             blogDto.setCommentNum(commentNum);
-        //现获取从数据库中获得的时间，为String对象
-        String blogCreat = blogDto.getCreateTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
-        //将字符串转换成Date对象
-        Date date = sdf.parse(blogCreat);
+            //现获取从数据库中获得的时间，为String对象
+            String blogCreat = blogDto.getCreateTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+            //将字符串转换成Date对象
+            Date date = sdf.parse(blogCreat);
 
-        //在将转换后的data对象转换为String
-        String a = DateUtil.newdate(date);
+            //在将转换后的data对象转换为String
+            String a = DateUtil.newdate(date);
 
-        blogDto.setCreateTime(a);
-    }
-      // PageInfo<BlogDto> info = new PageInfo<>(list);
-      // map.put("total",info.getTotal());
-        map.put("list", list);
-        map.put("totaPage",page);
-        return map;
-}
-
-        @RequestMapping("/listBycr")
-        public Map<String,Object> listBycr(){
-            Map<String,Object> map=new HashMap<String, Object>();
-            List<BlogDto> list=blogService.blogLisByCr();
-            map.put("list",list);
-            return map;
+            blogDto.setCreateTime(a);
         }
+        // PageInfo<BlogDto> info = new PageInfo<>(list);
+        // map.put("total",info.getTotal());
+        map.put("list", list);
+        map.put("totaPage", page);
+        return map;
+    }
+
+    @RequestMapping("/listBycr")
+    public Map<String, Object> listBycr() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<BlogDto> list = blogService.blogLisByCr();
+        map.put("list", list);
+        return map;
+    }
 
     @RequestMapping("/listShow")
     public Map<String, Object> listShow() {
@@ -126,27 +127,26 @@ public class BlogController {
         map.put("total", 10);
         map.put("rows", list);
         return map;
-        }
+    }
 
 
+    @RequestMapping("/listByTime")
+    public Map<String, Object> listTime(String createTime) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<BlogDto> list = blogService.blogListByTime(createTime);
+        map.put("total", 10);
+        map.put("rows", list);
+        return map;
 
-        @RequestMapping("/listByTime")
-    public Map<String,Object> listTime(String createTime){
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<BlogDto> list=blogService.blogListByTime(createTime);
-            map.put("total", 10);
-            map.put("rows", list);
-            return map;
+    }
 
-        }
+    @RequestMapping("/getAlTime")
+    public Map<String, Object> getAlTime() throws ParseException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<BlogTimeDto> list = blogService.getAllCreatTime();
 
-        @RequestMapping("/getAlTime")
-    public Map<String,Object> getAlTime() throws ParseException {
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<BlogTimeDto>  list= blogService.getAllCreatTime();
-
-        for (BlogTimeDto blogTimeDto: list) {
-            String blogTime=blogTimeDto.getCreateTime();
+        for (BlogTimeDto blogTimeDto : list) {
+            String blogTime = blogTimeDto.getCreateTime();
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
             //将字符串转换成Date对象
@@ -157,75 +157,73 @@ public class BlogController {
             blogTimeDto.setCreateTime(a);
         }
         //set排序
-        Set<BlogTimeDto> blogTimeDtos=new HashSet<>();
-        Set<String> set=new HashSet<>();
-            for (BlogTimeDto blogTimeDto:list) {
-                set.add(blogTimeDto.getCreateTime());
-            }
-            for(String s : set){
-                BlogTimeDto blogTimeDto=new BlogTimeDto();
-                blogTimeDto.setCreateTime(s);
-                blogTimeDtos.add(blogTimeDto);
-            }
-            map.put("newtemm",blogTimeDtos);
-        map.put("list",list);
+        Set<BlogTimeDto> blogTimeDtos = new HashSet<>();
+        Set<String> set = new HashSet<>();
+        for (BlogTimeDto blogTimeDto : list) {
+            set.add(blogTimeDto.getCreateTime());
+        }
+        for (String s : set) {
+            BlogTimeDto blogTimeDto = new BlogTimeDto();
+            blogTimeDto.setCreateTime(s);
+            blogTimeDtos.add(blogTimeDto);
+        }
+        map.put("newtemm", blogTimeDtos);
+        map.put("list", list);
         return map;
     }
 
     @RequestMapping("/getThreeTime")
-    public Map<String,Object> getThreeTime() throws ParseException {
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<BlogTimeDto> list=blogService.getThreeCreatTime();
-        for (BlogTimeDto blogTimeDto:list) {
-            String blogTime=blogTimeDto.getCreateTime();
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-            Date date=sdf.parse(blogTime);
-            String a= DateUtil.new2date(date);
+    public Map<String, Object> getThreeTime() throws ParseException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<BlogTimeDto> list = blogService.getThreeCreatTime();
+        for (BlogTimeDto blogTimeDto : list) {
+            String blogTime = blogTimeDto.getCreateTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = sdf.parse(blogTime);
+            String a = DateUtil.new2date(date);
 
             blogTimeDto.setCreateTime(a);
         }
-        Set<BlogTimeDto> blogTimeDtos=new HashSet<>();
-        Set<String> set=new HashSet();
-        for (BlogTimeDto blogTimeDto: list) {
+        Set<BlogTimeDto> blogTimeDtos = new HashSet<>();
+        Set<String> set = new HashSet();
+        for (BlogTimeDto blogTimeDto : list) {
             set.add(blogTimeDto.getCreateTime());
         }
-        for (String s: set) {
-            BlogTimeDto blogTimeDto=new BlogTimeDto();
+        for (String s : set) {
+            BlogTimeDto blogTimeDto = new BlogTimeDto();
             blogTimeDto.setCreateTime(s);
             blogTimeDtos.add(blogTimeDto);
         }
 
-        map.put("newss",blogTimeDtos);
+        map.put("newss", blogTimeDtos);
 
 
-        map.put("list",list);
+        map.put("list", list);
         return map;
     }
 
     /**
-     *
      * @param pageNum 分几页
      * @return
      */
     @RequestMapping("/total")
-    public Map<String,Object> getPage(int pageNum){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getPage(int pageNum) {
+        Map<String, Object> map = new HashMap<>();
 
         int page = blogService.getBlogNum(pageNum);
 
-        map.put("totaPage",page);
+        map.put("totaPage", page);
 
         return map;
     }
 
 
-
     @RequestMapping("/blogById")
-    public Map<String,Object> getBlogById(int blogId) throws ParseException {
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getBlogById(int blogId) throws ParseException {
+        Map<String, Object> map = new HashMap<>();
 
         List<BlogDto> blogDtos = blogService.blogListById(blogId);
-        for(BlogDto blogDto :blogDtos) {
+        for (BlogDto blogDto : blogDtos) {
             //每次博客访问，算点击一次
             int clickNum = blogDto.getClickNum();
             int newClick = clickNum + 1;
@@ -239,23 +237,23 @@ public class BlogController {
             String a = DateUtil.newdate(date);
             blogDto.setCreateTime(a);
             String laberName = blogDto.getLabelName();
-            String newlaberName=laberName.replaceAll("，",",");
-            String[] liberNlis=newlaberName.split(",");
+            String newlaberName = laberName.replaceAll("，", ",");
+            String[] liberNlis = newlaberName.split(",");
             blogDto.setLaberNamLis(liberNlis);
         }
 
-            map.put("text","变更成功");
-            map.put("list",blogDtos);
+        map.put("text", "变更成功");
+        map.put("list", blogDtos);
 
         return map;
     }
 
 
     @RequestMapping("/blogHot")
-    public Map<String,Object> blogHotList(){
-        Map<String,Object> map=new HashMap<String, Object>();
-        List<BlogDto> list=blogService.blogLiByHot();
-        map.put("list",list);
+    public Map<String, Object> blogHotList() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<BlogDto> list = blogService.blogLiByHot();
+        map.put("list", list);
         return map;
     }
 }

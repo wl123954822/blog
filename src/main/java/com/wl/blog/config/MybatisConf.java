@@ -13,10 +13,10 @@ import java.util.Properties;
 public class MybatisConf {
 
     @Bean
-    public PageHelper pageHelper(){
+    public PageHelper pageHelper() {
 
-        PageHelper pageHelper=new PageHelper();
-        Properties p=new Properties();
+        PageHelper pageHelper = new PageHelper();
+        Properties p = new Properties();
         p.setProperty("offsetAsPageNum", "true");
         p.setProperty("rowBoundsWithCount", "true");
         p.setProperty("reasonable", "true");

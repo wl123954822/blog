@@ -11,8 +11,8 @@ import java.io.*;
 @SpringBootTest
 public class BlogApplicationTests {
 
-	@Test
-	public void contextLoads() throws IOException {
+    @Test
+    public void contextLoads() throws IOException {
 		/*File intputFile=new File("D://a.txt");
 		File outputFile=new File("D://b.txt");
 
@@ -24,6 +24,6 @@ public class BlogApplicationTests {
 		out.close();
 */
 
-	}
+    }
 
 }

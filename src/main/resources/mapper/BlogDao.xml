@@ -20,24 +20,24 @@
 
     <select id="listShow" resultType="com.wl.blog.Dto.BlogDto">
         SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,b.suolueTu,
-            tc.classificationId,tc.classificationName,b.id as bid,
-            tbc.blogClassId,
-            u.username,u.id,
-            t.clickNum,t.blogId,
-            tl.labelId,tl.labelName
+        tc.classificationId,tc.classificationName,b.id as bid,
+        tbc.blogClassId,
+        u.username,u.id,
+        t.clickNum,t.blogId,
+        tl.labelId,tl.labelName
         FROM tbBlog b
-            INNER JOIN tb_contentcls tbc ON tbc.blogClassId=b.classificationId
-            INNER JOIN tb_classification tc ON tc.classificationId=tbc.classificationId
-            INNER JOIN tb_user u ON u.id=b.userId
-            INNER JOIN tb_label tl ON tl.labelId=b.labelId
-            INNER JOIN tb_click t ON t.blogId=b.id
+        INNER JOIN tb_contentcls tbc ON tbc.blogClassId=b.classificationId
+        INNER JOIN tb_classification tc ON tc.classificationId=tbc.classificationId
+        INNER JOIN tb_user u ON u.id=b.userId
+        INNER JOIN tb_label tl ON tl.labelId=b.labelId
+        INNER JOIN tb_click t ON t.blogId=b.id
     </select>
 
     <select id="listByTime" resultType="com.wl.blog.Dto.BlogDto">
         SELECT b.title,b.createTime,b.userId,b.id as bid,
-            t.clickNum,t.blogId
+        t.clickNum,t.blogId
         FROM tb_blog b
-            INNER JOIN tb_click t ON t.blogId=b.id
+        INNER JOIN tb_click t ON t.blogId=b.id
         WHERE b.createTime LIKE CONCAT('%',#{createTime},'%')
     </select>
 
@@ -46,7 +46,7 @@
     </select>
 
     <select id="getThreeCreatTime" resultType="com.wl.blog.Dto.BlogTimeDto">
-        SELECT id,createTime FROM tb_blog ORDER BY   createTime DESC LIMIT 3
+        SELECT id,createTime FROM tb_blog ORDER BY createTime DESC LIMIT 3
     </select>
 
     <select id="getBolgNum" resultType="java.lang.Integer">

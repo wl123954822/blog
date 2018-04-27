@@ -23,7 +23,7 @@ public interface CommentService {
     List<CommentDto> listByPid(int blogId);
 
     /**
-     *根据blogId查询评论数
+     * 根据blogId查询评论数
      */
-    int countNum (int blogId);
+    int countNum(int blogId);
 }

@@ -20,7 +20,7 @@ public interface ClassificationService {
 
     boolean deleteClassif(int classificationId);
 
-    boolean updateClassifStatu(int classificationId,int classificationIdStatus);
+    boolean updateClassifStatu(int classificationId, int classificationIdStatus);
 
     List<Classification> classifListByStatus(int classificationIdStatus);
 

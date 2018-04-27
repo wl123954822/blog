@@ -38,9 +38,9 @@ public class UserLoginServiceImpl implements UserLoginService {
     public User getUserById(int id) {
         User user = userLogin.getUserById(id);
 
-        if (user == null){
-            return  new User();
-        }else {
+        if (user == null) {
+            return new User();
+        } else {
             return user;
         }
     }

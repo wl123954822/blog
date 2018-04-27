@@ -3,7 +3,7 @@
 <mapper namespace="com.wl.blog.dao.BlogListDao">
 
     <select id="blogList" resultType="com.wl.blog.Dto.BlogDto">
-         SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
+        SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
         tc.classificationName,b.id as blogId,b.suolueTu,
         u.username,
         t.clickNum,
@@ -17,7 +17,7 @@
     </select>
 
     <select id="blogLiByCreate" resultType="com.wl.blog.Dto.BlogDto">
-       SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
+        SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
         tc.classificationName,b.id as blogId,
         u.username,
         t.clickNum,
@@ -32,8 +32,8 @@
     </select>
 
     <select id="getBlogList" resultType="com.wl.blog.Dto.BlogDto">
-         SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
-          b.content,b.suolueTu,
+        SELECT b.title,b.abstractContent,b.labelId,b.classificationId,b.createTime,b.userId,
+        b.content,b.suolueTu,
         tc.classificationName,b.id as blogId,
         u.username,
         t.clickNum,

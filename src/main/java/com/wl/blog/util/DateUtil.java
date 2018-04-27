@@ -12,34 +12,37 @@ import java.util.logging.SimpleFormatter;
 public class DateUtil {
     /**
      * 年月日
-      * @param date
+     *
+     * @param date
      * @return
      */
-    public static String newdate(Date date){
+    public static String newdate(Date date) {
 
-        SimpleDateFormat df=new SimpleDateFormat("yyyy年MM月dd日");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日");
         return df.format(date);
     }
 
     /**
      * 年月
+     *
      * @param date
      * @return
      */
-    public static String new2date(Date date){
+    public static String new2date(Date date) {
 
-        SimpleDateFormat df=new SimpleDateFormat("yyyy年MM月");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月");
         return df.format(date);
     }
 
     /**
      * 年月日时分秒
+     *
      * @param date
      * @return
      */
-    public static String yymsfm(Date date){
+    public static String yymsfm(Date date) {
 
-        SimpleDateFormat df=new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         return df.format(date);
     }
 }
