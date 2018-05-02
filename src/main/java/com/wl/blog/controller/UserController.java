@@ -97,6 +97,7 @@ public class UserController {
     public Map<String, Object> getUserInfo(String token, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         Integer userId = (Integer) redisTemplate.opsForValue().get(token);
+
         if (userId == null) {
             map.put("status", "error");
             map.put("text", "无用户登录");
