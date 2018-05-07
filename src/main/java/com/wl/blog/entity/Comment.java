@@ -60,4 +60,16 @@ public class Comment {
     public void setPid(int pid) {
         this.pid = pid;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", commentUserId=" + commentUserId +
+                ", commentContant='" + commentContant + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", pid=" + pid +
+                ", blogId=" + blogId +
+                '}';
+    }
 }

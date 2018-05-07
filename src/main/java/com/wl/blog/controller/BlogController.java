@@ -8,10 +8,7 @@ import com.wl.blog.Dto.BlogTimeDto;
 import com.wl.blog.entity.Blog;
 import com.wl.blog.entity.Click;
 import com.wl.blog.entity.Label;
-import com.wl.blog.service.BlogService;
-import com.wl.blog.service.ClickService;
-import com.wl.blog.service.CommentService;
-import com.wl.blog.service.LaberService;
+import com.wl.blog.service.*;
 import com.wl.blog.util.DateUtil;
 import com.wl.blog.util.Interface.Access;
 import com.wl.blog.util.RegExpUtil;
@@ -52,6 +49,9 @@ public class BlogController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private LikeService likeService;
 
     @RequestMapping("/add")
     public Map<String, Object> addBlog(@RequestParam("labelName") String labelName,
@@ -94,6 +94,10 @@ public class BlogController {
         for (BlogDto blogDto : list) {
             //获取评论数
             int commentNum = commentService.countNum(blogDto.getBlogId());
+            //获取点赞数
+            int likeNum =likeService.likeNum(blogDto.getBlogId());
+
+            blogDto.setLikeNum(likeNum);
             blogDto.setCommentNum(commentNum);
             //现获取从数据库中获得的时间，为String对象
             String blogCreat = blogDto.getCreateTime();
@@ -236,6 +240,10 @@ public class BlogController {
             Date date = sdf.parse(time);
             //在将转换后的data对象转换为String
             String a = DateUtil.newdate(date);
+            //获取评论数
+            int commentNum = commentService.countNum(blogDto.getBlogId());
+            blogDto.setCommentNum(commentNum);
+
             blogDto.setCreateTime(a);
             String laberName = blogDto.getLabelName();
             String newlaberName = laberName.replaceAll("，", ",");

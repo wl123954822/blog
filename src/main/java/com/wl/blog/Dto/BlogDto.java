@@ -35,6 +35,16 @@ public class BlogDto implements Serializable {
 
     private int statusId;
 
+    private int likeNum;
+
+    public int getLikeNum() {
+        return likeNum;
+    }
+
+    public void setLikeNum(int likeNum) {
+        this.likeNum = likeNum;
+    }
+
     private String username;
 
     private String classificationName;
