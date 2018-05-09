@@ -82,13 +82,13 @@ public class BlogController {
     }
 
     @RequestMapping("/list")
-    public Map<String, Object> blogList(/* int pageSize,int pageNumber*/) throws ParseException {
-        // System.out.println("pageSize"+pageSize);
-        // System.out.println("pageNumber"+pageNumber);
+    public Map<String, Object> blogList(int pageSize,int pageNumber ,int classificationId) throws ParseException {
+        System.out.println(" classificationId "+classificationId);
+
         Map<String, Object> map = new HashMap<String, Object>();
         //开启分页
-        //  PageHelper.startPage(pageSize,pageNumber);
-        List<BlogDto> list = blogService.blogList();
+         PageHelper.startPage(pageSize,pageNumber);
+        List<BlogDto> list = blogService.blogList(classificationId);
         int page = blogService.getBlogNum(5);
 
         for (BlogDto blogDto : list) {
@@ -110,9 +110,10 @@ public class BlogController {
 
             blogDto.setCreateTime(a);
         }
-        // PageInfo<BlogDto> info = new PageInfo<>(list);
-        // map.put("total",info.getTotal());
-        map.put("list", list);
+        PageInfo<BlogDto> info = new PageInfo<>(list);
+        map.put("total",info.getTotal());
+        map.put("list",info.getList());
+        //map.put("list", list);
         map.put("totaPage", page);
         return map;
     }

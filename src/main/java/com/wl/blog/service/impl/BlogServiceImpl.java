@@ -10,6 +10,7 @@ import com.wl.blog.entity.Blog;
 import com.wl.blog.entity.Contentcls;
 import com.wl.blog.service.BlogService;
 import com.wl.blog.service.ClassificationService;
+import com.wl.blog.util.RegExpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +47,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogDto> blogList() {
-        return blogListDao.blogList();
+    public List<BlogDto> blogList(int classificationId) {
+        if (classificationId == 0){
+            return blogListDao.blogList();
+        }else {
+            return blogListDao.listByCid(classificationId);
+        }
+
     }
 
     @Override

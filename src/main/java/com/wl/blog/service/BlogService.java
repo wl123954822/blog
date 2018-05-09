@@ -15,7 +15,7 @@ public interface BlogService {
 
     boolean addBlog(Blog blog);
 
-    List<BlogDto> blogList();
+    List<BlogDto> blogList(int classificationId);
 
     List<BlogDto> blogLisByCr();
 

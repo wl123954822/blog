@@ -28,4 +28,7 @@ public interface BlogListDao {
 
     //最热文章
     List<BlogDto> blogLiByHot();
+
+    //分类查询
+    List<BlogDto> listByCid(int classificationId);
 }
