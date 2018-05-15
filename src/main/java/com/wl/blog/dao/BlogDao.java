@@ -31,4 +31,7 @@ public interface BlogDao {
     //获得博客总记录数
     int getBolgNum();
 
+
+    boolean updateDao(Blog blog);
+
 }

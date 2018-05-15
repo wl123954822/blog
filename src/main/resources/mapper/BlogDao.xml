@@ -52,4 +52,19 @@
     <select id="getBolgNum" resultType="java.lang.Integer">
         select count(*) as blogNum from tb_blog
     </select>
+
+
+    <update id="updateDao" >
+      update tb_blog
+      <set>
+          <if test="title !=null"> title=#{title},</if>
+          <if test="content !=null"> content=#{content},</if>
+          <if test="labelId !=null">labelId=#{labelId}</if>
+          <if test="classificationId !=null">classificationId=#{classificationId},</if>
+          <if test="abstractContent !=null">abstractContent=#{abstractContent},</if>
+          <if test="userId !=null">userId=#{userId},</if>
+          <if test="suolueTu !=null">suolueTu=#{suolueTu}</if>
+      </set>
+      where blogId=#{blogId}
+    </update>
 </mapper>

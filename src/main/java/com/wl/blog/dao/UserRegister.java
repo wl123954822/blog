@@ -1,7 +1,9 @@
 package com.wl.blog.dao;
 
 import com.wl.blog.entity.User;
+import lombok.Builder;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @Author: wl
@@ -16,4 +18,6 @@ public interface UserRegister {
     Boolean register(User user);
 
     Integer selectEmail(String email);
+
+    boolean updateUserName(@Param("userName") String userName,@Param("userId") int id);
 }

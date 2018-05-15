@@ -16,4 +16,13 @@
     <select id="selectEmail" resultType="java.lang.Integer">
         SELECT id FROM tb_user WHERE email=#{email}
     </select>
+
+    <update id="updateUserName">
+        update tb_user
+        <set>
+            username = #{userName}
+        </set>
+
+        where id = #{userId}
+    </update>
 </mapper>

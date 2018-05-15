@@ -17,9 +17,10 @@
     </delete>
 
     <select id="getLlistByPid" resultType="com.wl.blog.Dto.CommentDto">
-        SELECT tc.blogId,tc.id,tc.commentUserId,tc.commentContant,tc.createTime,tc.pid, tu.username
+        SELECT tc.blogId,tc.id,tc.commentUserId,tc.commentContant,tc.createTime,tc.pid, tu.username ,tuu.timage
         FROM tb_comment tc
         INNER JOIN tb_user tu ON tu.id = tc.commentUserId
+        inner join tb_userinfo tuu on tuu.userId = tc.commentUserId
         WHERE tc.blogId=#{blogId}
         ORDER BY tc.createTime
     </select>

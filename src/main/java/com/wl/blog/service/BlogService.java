@@ -37,4 +37,7 @@ public interface BlogService {
 
     //最热文章
     List<BlogDto> blogLiByHot();
+
+    //更新blog
+    boolean updateBlog(Blog blog);
 }

@@ -103,5 +103,10 @@ public class BlogServiceImpl implements BlogService {
         return blogListDao.blogLiByHot();
     }
 
+    @Override
+    public boolean updateBlog(Blog blog) {
+        return false;
+    }
+
 
 }

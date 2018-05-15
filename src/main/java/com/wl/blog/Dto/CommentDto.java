@@ -18,6 +18,16 @@ public class CommentDto {
 
     private String pName;
 
+    private String timage;
+
+    public String getTimage() {
+        return timage;
+    }
+
+    public void setTimage(String timage) {
+        this.timage = timage;
+    }
+
     public String getpName() {
         return pName;
     }
