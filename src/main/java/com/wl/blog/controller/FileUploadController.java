@@ -29,7 +29,8 @@ public class FileUploadController {
     public Map<String, Object> fileUpload(@RequestParam("file") MultipartFile file) {
         ImageFile returnimageFile = null;
         Map<String, Object> map = new HashMap<>();
-        String imagePath = "D://nginx//nginx//nginx//";
+        //String imagePath = "D://nginx//nginx//nginx//";
+        String imagePath = "//usr//local/nginx";
         String fileLocation = "/images/blogImg/";
         String path = imagePath + fileLocation;
         if (file.getSize() == 0) {
