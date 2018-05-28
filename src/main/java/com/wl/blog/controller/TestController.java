@@ -41,7 +41,7 @@ public class TestController {
         //存字符串
         stringRedisTemplate.opsForValue().set("aaa", "111");
         String string = stringRedisTemplate.opsForValue().get("aaa");
-        System.out.println(string);
+
 
         //存对象
         TesUser user = new TesUser(1, 2, "钢铁1");

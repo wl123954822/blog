@@ -1,6 +1,6 @@
 package com.wl.blog.entity;
 
-public class Like  {
+public class    Like  {
 
     private int id;
 

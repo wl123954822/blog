@@ -45,7 +45,6 @@ public class UserInfoController {
         Map<String,Object> map = new HashMap<>();
         Integer userId = (Integer) redisTemplate.opsForValue().get(token);
         userInfo.setUserId(userId);
-        System.out.println(userName);
             if (userInfoService.updat(userInfo,userName)) {
                 map.put("status", "success");
                 map.put("text", "修改成功");

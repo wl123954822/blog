@@ -31,9 +31,6 @@ public class CommentController {
         Integer userId = (Integer) redisTemplate.opsForValue().get(token);
         comment.setCommentUserId(userId);
         //增加评论限制，自己不能回复自己
-        System.out.println(comment.toString());
-        System.out.println("PID "+comment.getPid() );
-        System.out.println("USERiD " +userId);
         if (comment.getPid() != 0 && comment.getPid() == userId) {
             map.put("status", "error");
             map.put("text", "不能评论自己");

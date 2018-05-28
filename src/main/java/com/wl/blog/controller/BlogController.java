@@ -83,7 +83,6 @@ public class BlogController {
 
     @RequestMapping("/list")
     public Map<String, Object> blogList(int pageSize,int pageNumber ,int classificationId) throws ParseException {
-        System.out.println(" classificationId "+classificationId);
 
         Map<String, Object> map = new HashMap<String, Object>();
         //开启分页

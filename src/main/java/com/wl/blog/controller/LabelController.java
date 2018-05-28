@@ -74,7 +74,6 @@ public class LabelController {
         Map<String, Object> map = new HashMap<String, Object>();
         List<LaberDto> labels = laberService.laberSet();
         for (LaberDto laberDto : labels) {
-            System.out.println(laberDto.getLabelName());
             Set set = new HashSet(labels);
         }
        /* //把set转为字符串
