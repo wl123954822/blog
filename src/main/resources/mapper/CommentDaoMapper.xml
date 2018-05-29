@@ -28,4 +28,8 @@
     <select id="commentNum" resultType="java.lang.Integer">
         SELECT COUNT(*) from tb_comment WHERE blogId=#{blogId} and pid=#{pid}
     </select>
+
+    <select id="isUser" resultType="java.lang.Integer">
+        select commentUserId from tb_comment where id=#{id}
+    </select>
 </mapper>

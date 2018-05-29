@@ -25,7 +25,7 @@
         u.username,u.id,
         t.clickNum,t.blogId,
         tl.labelId,tl.labelName
-        FROM tbBlog b
+        FROM tb_blog b
         INNER JOIN tb_contentcls tbc ON tbc.blogClassId=b.classificationId
         INNER JOIN tb_classification tc ON tc.classificationId=tbc.classificationId
         INNER JOIN tb_user u ON u.id=b.userId

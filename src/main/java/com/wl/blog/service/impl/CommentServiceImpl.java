@@ -44,4 +44,9 @@ public class CommentServiceImpl implements CommentService {
         int pid = 0;
         return commentDao.commentNum(pid, blogId);
     }
+
+    @Override
+    public int isUser(int id) {
+        return commentDao.isUser(id);
+    }
 }

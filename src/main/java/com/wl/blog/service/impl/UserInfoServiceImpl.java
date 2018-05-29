@@ -26,7 +26,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public boolean updat(UserInfo userInfo,String userName) {
-        System.out.println("service " + userName);
         userRegister.updateUserName(userName,userInfo.getUserId());
         return userInfoDao.updateUserInfo(userInfo);
     }

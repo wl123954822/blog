@@ -26,4 +26,8 @@ public interface CommentService {
      * 根据blogId查询评论数
      */
     int countNum(int blogId);
+
+
+    //验证评论是否是本人可删除
+    int isUser(int id);
 }

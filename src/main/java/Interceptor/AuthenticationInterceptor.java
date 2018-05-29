@@ -30,7 +30,6 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         Method method = handlerMethod.getMethod();
         //获取方法上的Access注解
         Access access = method.getAnnotation(Access.class);
-        System.out.println("ACCESS" + access);
         if (access == null) {
             return true;
         }

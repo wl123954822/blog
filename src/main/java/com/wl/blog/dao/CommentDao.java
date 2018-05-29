@@ -23,4 +23,7 @@ public interface CommentDao {
     List<CommentDto> getLlistByPid(@Param("blogId") int blogId);
 
     int commentNum(@Param("pid") int pid, @Param("blogId") int blogId);
+
+    //验证评论是否是本人可删除
+    int isUser(int id);
 }

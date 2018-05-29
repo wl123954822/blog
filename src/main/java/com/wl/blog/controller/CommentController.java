@@ -45,15 +45,22 @@ public class CommentController {
 
 
     @RequestMapping("/delete")
-    public Map<String, Object> deleteComment(int id) {
+    public Map<String, Object> deleteComment(int id,String token) {
+        Integer userId = (Integer) redisTemplate.opsForValue().get(token);
         Map<String, Object> map = new HashMap<>();
-        if (commentService.deleteComment(id)) {
-            map.put("status", "success");
-            map.put("text", "删除成功");
-        } else {
-            map.put("status", "erroe");
-            map.put("text", "删除失败");
+
+        if (commentService.isUser(id)==userId){
+            if (commentService.deleteComment(id)) {
+                map.put("status", "success");
+                map.put("text", "删除成功");
+            } else {
+                map.put("status", "erroe");
+                map.put("text", "删除失败");
+            }
+        }else {
+            map.put("text","非本人无法删除");
         }
+
         return map;
     }
 
