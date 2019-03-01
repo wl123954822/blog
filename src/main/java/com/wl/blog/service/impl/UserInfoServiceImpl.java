@@ -27,6 +27,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public boolean updat(UserInfo userInfo,String userName) {
         userRegister.updateUserName(userName,userInfo.getUserId());
+        UserDto getUserInfo = this.userInfoDao.getListByUserId(userInfo.getUserId());
+        if (getUserInfo == null) {
+        	userInfoDao.addUserInfo(userInfo);
+        }
         return userInfoDao.updateUserInfo(userInfo);
     }
 }

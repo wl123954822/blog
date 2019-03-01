@@ -152,11 +152,9 @@ public class BlogController {
 
         for (BlogTimeDto blogTimeDto : list) {
             String blogTime = blogTimeDto.getCreateTime();
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
             //将字符串转换成Date对象
             Date date = sdf.parse(blogTime);
-
             //在将转换后的data对象转换为String
             String a = DateUtil.new2date(date);
             blogTimeDto.setCreateTime(a);
@@ -186,7 +184,6 @@ public class BlogController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(blogTime);
             String a = DateUtil.new2date(date);
-
             blogTimeDto.setCreateTime(a);
         }
         Set<BlogTimeDto> blogTimeDtos = new HashSet<>();
@@ -214,11 +211,8 @@ public class BlogController {
     @RequestMapping("/total")
     public Map<String, Object> getPage(int pageNum) {
         Map<String, Object> map = new HashMap<>();
-
         int page = blogService.getBlogNum(pageNum);
-
         map.put("totaPage", page);
-
         return map;
     }
 
@@ -226,7 +220,6 @@ public class BlogController {
     @RequestMapping("/blogById")
     public Map<String, Object> getBlogById(int blogId) throws ParseException {
         Map<String, Object> map = new HashMap<>();
-
         List<BlogDto> blogDtos = blogService.blogListById(blogId);
         for (BlogDto blogDto : blogDtos) {
             //每次博客访问，算点击一次
@@ -243,7 +236,6 @@ public class BlogController {
             //获取评论数
             int commentNum = commentService.countNum(blogDto.getBlogId());
             blogDto.setCommentNum(commentNum);
-
             blogDto.setCreateTime(a);
             String laberName = blogDto.getLabelName();
             String newlaberName = laberName.replaceAll("，", ",");

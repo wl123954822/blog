@@ -4,6 +4,7 @@ import com.wl.blog.entity.file.ImageFile;
 import com.wl.blog.service.FileImageService;
 import com.wl.blog.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +25,14 @@ public class FileUploadController {
 
     @Autowired
     private FileImageService fileImageService;
-
+    @Value("${filepath}")
+    private String filePath;
+    
     @RequestMapping("/uploadImg")
     public Map<String, Object> fileUpload(@RequestParam("file") MultipartFile file) {
         ImageFile returnimageFile = null;
         Map<String, Object> map = new HashMap<>();
-        //String imagePath = "D://nginx//nginx//nginx//";
-        String imagePath = "//usr//local/nginx";
+        String imagePath = filePath;
         String fileLocation = "/images/blogImg/";
         String path = imagePath + fileLocation;
         if (file.getSize() == 0) {
